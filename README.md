@@ -41,6 +41,7 @@ run daemon container and run command in container
 ```
 docker container run --name www -d -p 8000:80 nginx:1.16
 docker exec -ti www ls -la
+docker exec -ti www /bin/bash
 ```
 
 run container with volume myvolume (will be created automatically)
@@ -95,4 +96,14 @@ docker volume rm
 docker system info
 docker system df
 docker system prune [--volumes]
+```
+
+
+## Some special staff
+
+get the shell on the host - access to Docker VM on Mac OS 
+see https://medium.com/lucjuggery/a-container-to-access-the-shell-of-the-host-2c7c227c64e9
+```
+docker run --privileged --pid=host -it alpine:3.8 \
+nsenter -t 1 -m -u -n -i sh
 ```
